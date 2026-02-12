@@ -1,0 +1,247 @@
+[
+  {
+    "q": "What does UX primarily focus on?",
+    "options": [
+      "Colors and fonts",
+      "User’s overall experience with a product",
+      "Coding efficiency",
+      "Marketing strategy"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "UI stands for:",
+    "options": [
+      "User Integration",
+      "User Interface",
+      "Utility Interaction",
+      "Unified Input"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Which is a UX activity?",
+    "options": [
+      "Logo design",
+      "User research",
+      "Server configuration",
+      "API testing"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Wireframes are mainly used to:",
+    "options": [
+      "Add animations",
+      "Show layout structure",
+      "Choose color palette",
+      "Write code"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Low-fidelity prototypes are:",
+    "options": [
+      "Fully coded",
+      "Highly detailed",
+      "Simple and rough layouts",
+      "Final product screens"
+    ],
+    "correct": 2
+  },
+  {
+    "q": "Which principle improves readability most?",
+    "options": ["Contrast", "Decoration", "Animation", "Sound"],
+    "correct": 0
+  },
+  {
+    "q": "A persona in UX is:",
+    "options": [
+      "A color theme",
+      "A fictional user profile",
+      "A font style",
+      "A layout grid"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "CTA stands for:",
+    "options": [
+      "Click Tracking Area",
+      "Call To Action",
+      "Control Text Alignment",
+      "Content Type Asset"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Which is better for mobile tap targets?",
+    "options": [
+      "Small and compact",
+      "Large and spaced",
+      "Hidden",
+      "Text only"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Usability means:",
+    "options": [
+      "Beauty of interface",
+      "Ease of use",
+      "Development speed",
+      "Brand consistency"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Which color combination gives best accessibility?",
+    "options": [
+      "Light gray on white",
+      "Blue on black",
+      "High contrast pairs",
+      "Similar shades"
+    ],
+    "correct": 2
+  },
+  {
+    "q": "A prototype is used to:",
+    "options": [
+      "Launch product",
+      "Test design ideas",
+      "Market product",
+      "Store data"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Which is NOT a UX metric?",
+    "options": [
+      "Task success rate",
+      "Time on task",
+      "User satisfaction",
+      "CPU usage"
+    ],
+    "correct": 3
+  },
+  {
+    "q": "Information Architecture deals with:",
+    "options": [
+      "Code optimization",
+      "Data storage",
+      "Content organization",
+      "Image compression"
+    ],
+    "correct": 2
+  },
+  {
+    "q": "Which is a qualitative UX method?",
+    "options": [
+      "Surveys with numbers",
+      "Interviews",
+      "Analytics dashboards",
+      "A/B stats only"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Fitts’s Law relates to:",
+    "options": [
+      "Color harmony",
+      "Target size and click time",
+      "Typography spacing",
+      "Grid systems"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Consistency in UI helps:",
+    "options": [
+      "Reduce learning curve",
+      "Increase confusion",
+      "Add complexity",
+      "Slow navigation"
+    ],
+    "correct": 0
+  },
+  {
+    "q": "A/B testing compares:",
+    "options": [
+      "Two users",
+      "Two designs",
+      "Two colors only",
+      "Two devices"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Which layout pattern is common for reading content?",
+    "options": [
+      "Z pattern",
+      "Circular pattern",
+      "Random pattern",
+      "Spiral pattern"
+    ],
+    "correct": 0
+  },
+  {
+    "q": "Whitespace in design is used to:",
+    "options": [
+      "Waste space",
+      "Improve clarity",
+      "Add ads",
+      "Hide buttons"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Responsive design means:",
+    "options": [
+      "Fast loading",
+      "Adapts to screen sizes",
+      "Uses bright colors",
+      "Has animations"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Which is an example of micro-interaction?",
+    "options": [
+      "Page reload",
+      "Button hover effect",
+      "Database query",
+      "Server call"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Heuristic evaluation is done by:",
+    "options": [
+      "End users",
+      "Design experts",
+      "Servers",
+      "Marketers"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Dark patterns are:",
+    "options": [
+      "Night themes",
+      "Deceptive design tricks",
+      "Low contrast layouts",
+      "Security layers"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Which improves form usability?",
+    "options": [
+      "Many required fields",
+      "Clear labels",
+      "Hidden errors",
+      "Tiny fonts"
+    ],
+    "correct": 1
+  }
+]

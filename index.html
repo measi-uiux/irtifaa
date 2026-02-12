@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MIIT UI/UX Fusion</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #F6EFEA;
+    color: #222;
+    min-height: 100vh;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 250px;
+}
+
+.welcome-box {
+    width: 90%;
+    max-width: 720px;
+    margin: 140px auto;
+    background: #FFFFFF;
+    padding: 50px 45px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    border-top: 10px solid #8B1E1E;
+}
+
+.title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #8B1E1E;
+}
+
+.title span {
+    font-size: 20px;
+    font-weight: 400;
+    color: #6F1414;
+}
+
+.subtitle {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    color: #555;
+}
+
+.input-section {
+    text-align: left;
+    margin-bottom: 35px;
+}
+
+.input-section label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.input-section input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.button-section {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: #8B1E1E;
+    color: #fff;
+}
+
+.btn:hover {
+    background: #6F1414;
+}
+</style>
+</head>
+
+<body>
+
+<img src="logo.jpeg" class="logo" alt="Logo" />
+
+<div class="welcome-box">
+    <h2 class="title">
+        MIIT – IRTIFAA 2026<br />
+        <span>Brain Byte (Technical Quiz)</span>
+    </h2>
+
+    <p class="subtitle">
+        Test your knowledge, speed, accuracy and design <br />
+        – Exhibiting Hidden Talent
+    </p>
+
+    <div class="input-section">
+        <label for="participantName">Participant Name</label>
+        <input type="text" id="participantName" placeholder="Enter your full name" />
+    </div>
+
+    <div class="button-section">
+        <button class="btn" type="button" onclick="startRound1()">Start</button>
+    </div>
+</div>
+
+<script>
+function startRound1() {
+    const name = document.getElementById("participantName").value.trim();
+    if (!name) {
+        alert("Please enter participant name.");
+        return;
+    }
+
+    // Save participant name
+    localStorage.setItem("participantName", name);
+
+    // New attempt/session id (useful for tracking attempts)
+    localStorage.setItem("quizSessionId", String(Date.now()));
+
+    // Reset quiz result fields
+    localStorage.setItem("round1Completed", "false");
+    localStorage.removeItem("round1Score");
+    localStorage.removeItem("round1TimeTaken");
+
+    window.location.href = "round1.html";
+}
+</script>
+
+</body>
+</html>

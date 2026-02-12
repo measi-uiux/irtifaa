@@ -1,0 +1,85 @@
+body {
+    background-color: #f3e5d8;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+/* Logo stays top-left */
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 290px;
+    height: 60px;
+}
+
+/* Wider container for 25 questions + better readability */
+.container {
+    max-width: 900px;
+    margin: 100px auto 0; /* pushes content down so it doesn't clash with logo */
+    background: #fff;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #9c2c22;
+}
+
+/* Timer stays visible while scrolling long page */
+#timer {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fff;
+    padding: 12px 0;
+    font-size: 22px;
+    text-align: center;
+    color: #9c2c22;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Each question block */
+.question {
+    margin-bottom: 22px;
+    padding: 14px 12px;
+    border-radius: 8px;
+    background: #fff7f0;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Make options easier to tap/click */
+.question label {
+    display: block;
+    padding: 6px 0;
+    cursor: pointer;
+}
+
+.btn {
+    background-color: #9c2c22;
+    color: white;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 12px;
+    display: block;
+    width: 100%;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #7a221b;
+}
+
+#resultBox {
+    margin-top: 20px;
+    padding: 15px;
+    background: #ffe0c8;
+    border-radius: 10px;
+    text-align: center;
+    display: none;
+}

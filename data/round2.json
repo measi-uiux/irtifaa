@@ -1,0 +1,103 @@
+[
+  {
+    "q": "Which layer of OSI model is responsible for end-to-end communication?",
+    "options": ["Network", "Transport", "Session", "Application"],
+    "correct": 1
+  },
+  {
+    "q": "A stack works on which principle?",
+    "options": ["FIFO", "LIFO", "FILO", "Random"],
+    "correct": 1
+  },
+  {
+    "q": "SQL stands for:",
+    "options": ["Structured Query Language", "Simple Query Language", "System Query Language", "Structured Question Language"],
+    "correct": 0
+  },
+  {
+    "q": "Which topology is easiest to install?",
+    "options": ["Mesh", "Star", "Ring", "Bus"],
+    "correct": 1
+  },
+  {
+    "q": "Which of the following is a low-level programming language?",
+    "options": ["Python", "Java", "Assembly", "C++"],
+    "correct": 2
+  },
+  {
+    "q": "What is a pipeline in computer architecture?",
+    "options": [
+      "A storage device",
+      "A method to process multiple instructions simultaneously",
+      "A network protocol",
+      "A type of virus"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "What is a superscalar architecture?",
+    "options": [
+      "Executes multiple instructions simultaneously",
+      "Stores large amounts of data",
+      "Manages network traffic",
+      "Displays graphics"
+    ],
+    "correct": 0
+  },
+  {
+    "q": "Which is a valid C expression?",
+    "options": [
+      "int my_num = 100,000;",
+      "int my_num = 100000;",
+      "int my num = 1000;",
+      "int $my_num = 10000;"
+    ],
+    "correct": 1
+  },
+  {
+    "q": "Which of the following typecasting is accepted by C language?",
+    "options": [
+      "Widening conversions",
+      "Narrowing conversions",
+      "Widening & Narrowing conversions",
+      "None of the mentioned"
+    ],
+    "correct": 2
+  },
+  {
+    "q": "What will be the output of the following Java code (++g * 8 when g = 3)?",
+    "options": ["32", "33", "24", "25"],
+    "correct": 0
+  },
+
+  {
+    "q": "Which scheduling algorithm can cause starvation if priority is not adjusted?",
+    "options": ["FCFS", "Round Robin", "Priority Scheduling", "Shortest Job First"],
+    "correct": 2
+  },
+  {
+    "q": "Which memory management technique divides memory into fixed-size blocks?",
+    "options": ["Segmentation", "Paging", "Swapping", "Fragmentation"],
+    "correct": 1
+  },
+  {
+    "q": "In databases, which key uniquely identifies a record in a table?",
+    "options": ["Foreign key", "Candidate key", "Primary key", "Composite key"],
+    "correct": 2
+  },
+  {
+    "q": "Which C keyword is used to prevent a variable from being modified?",
+    "options": ["static", "volatile", "const", "register"],
+    "correct": 2
+  },
+  {
+    "q": "What does DNS primarily do?",
+    "options": [
+      "Encrypt data",
+      "Translate domain names to IP addresses",
+      "Assign IP addresses",
+      "Route network traffic"
+    ],
+    "correct": 1
+  }
+]
