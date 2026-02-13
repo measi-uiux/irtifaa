@@ -351,7 +351,7 @@ function showResult(autoSubmitted, reasonText = "") {
       <h2>PRELIMS COMPLETED</h2>
       ${autoSubmitted ? `<p><strong>Auto-submitted.</strong></p>` : ``}
       ${reasonText ? `<p><strong>${reasonText}</strong></p>` : ``}
-      <p><strong>Participant:</strong> ${participant}</p>
+      <p><strong>Team Members:</strong> ${participant}</p>
       <p><strong>Score:</strong> ${score} / ${TOTAL_QUESTIONS}</p>
       <p style="margin-top:12px;color:#6f1414;"><strong>Violations:</strong> ${violations}</p>
     `;
@@ -367,3 +367,4 @@ function showResult(autoSubmitted, reasonText = "") {
     else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
   } catch (_) {}
 }
+
