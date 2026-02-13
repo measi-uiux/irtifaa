@@ -68,7 +68,7 @@ function showWarning(message) {
   clearTimeout(showWarning._t);
   showWarning._t = setTimeout(() => {
     box.style.display = "none";
-  }, 2500);
+  }, 3000);
 }
 
 function hideOverlayAndUnlock() {
@@ -157,11 +157,8 @@ fetch("data/round1.json")
   .then((data) => {
     let picked = data.slice(0, TOTAL_QUESTIONS);
 
-    // shuffle questions per user
-    fisherYatesShuffle(picked);
-
-    // shuffle options per question (fix correct index)
-    picked = picked.map(shuffleOptionsKeepCorrect);
+    fisherYatesShuffle(picked);                 // shuffle questions per user
+    picked = picked.map(shuffleOptionsKeepCorrect); // shuffle options per question
 
     questions = picked;
 
@@ -184,13 +181,13 @@ function renderAllQuestions() {
   for (let i = 0; i < TOTAL_QUESTIONS; i++) {
     const q = questions[i];
     html += `
-      <div class="question">
+      <div class="question" id="question-${i}">
         <p><strong>Q${i + 1}.</strong> ${q.q}</p>
         ${q.options.map((opt, idx) => `
           <label>
             <input type="radio" name="q${i}" value="${idx}">
             ${opt}
-          </label>
+          </label><br>
         `).join("")}
       </div>
     `;
@@ -201,7 +198,7 @@ function renderAllQuestions() {
 }
 
 /* =========================
-   Prep Phase (1 minute)
+   Prep Phase
    ========================= */
 
 function updatePrepTimerUI() {
@@ -215,7 +212,6 @@ function initPrepPhase() {
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.classList.add("locked");
-    submitBtn.onclick = () => showResult(false);
   }
 
   // Keep timer area empty during instructions
@@ -228,10 +224,9 @@ function initPrepPhase() {
   if (startBtn) {
     startBtn.disabled = true;
     startBtn.classList.add("locked");
-    startBtn.onclick = null; // will be set when unlocked
+    startBtn.onclick = null;
   }
 
-  // Start 1-minute countdown
   prepLeft = PREP_TIME;
   updatePrepTimerUI();
 
@@ -243,7 +238,6 @@ function initPrepPhase() {
     if (prepLeft <= 0) {
       clearInterval(prepTimer);
 
-      // Unlock the start button now
       if (startBtn) {
         startBtn.disabled = false;
         startBtn.classList.remove("locked");
@@ -260,34 +254,31 @@ function initPrepPhase() {
 
 async function startQuizFromButton() {
   if (quizEnded) return;
-  if (quizStartTs) return; // already started
+  if (quizStartTs) return;
 
-  // Request fullscreen INSIDE this click handler (browser allows)
   await requestFullscreenStrictFromClick();
-
-  // Close overlay + unlock background (no scroll, no peeking before this)
   hideOverlayAndUnlock();
 
-  // Start timestamp (for completed-in metric)
   quizStartTs = Date.now();
-
-  // Enable proctoring now
   attachProctoringListeners();
 
-  // Enable submit now
+  // Enable submit now and enforce "all questions must be answered"
   const submitBtn = document.getElementById("submitBtn");
   if (submitBtn) {
     submitBtn.disabled = false;
     submitBtn.classList.remove("locked");
-    submitBtn.onclick = () => showResult(false);
+    submitBtn.onclick = () => {
+      // manual submit must have all answers
+      const ok = enforceAllAnsweredOrScroll();
+      if (ok) showResult(false);
+    };
   }
 
-  // Start quiz timer
   startTimer();
 }
 
 /* =========================
-   Quiz Timer (10 min)
+   Quiz Timer
    ========================= */
 
 function startTimer() {
@@ -311,7 +302,33 @@ function updateQuizTimerUI() {
 }
 
 /* =========================
-   Submit / Score / Result
+   Must-answer enforcement
+   ========================= */
+
+function enforceAllAnsweredOrScroll() {
+  for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (!selected) {
+      // Scroll to the first unanswered question
+      const qEl = document.getElementById(`question-${i}`);
+      if (qEl) {
+        qEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        // subtle highlight
+        qEl.style.outline = "3px solid #9c2c22";
+        qEl.style.borderRadius = "10px";
+        setTimeout(() => {
+          qEl.style.outline = "";
+        }, 2500);
+      }
+      showWarning(`Please answer Q${i + 1} before submitting.`);
+      return false;
+    }
+  }
+  return true;
+}
+
+/* =========================
+   Score / Result
    ========================= */
 
 function calculateScore() {
@@ -335,10 +352,8 @@ function showResult(autoSubmitted, reasonText = "") {
   const elapsed = getElapsedSeconds();
   const taken = formatMMSS(elapsed);
 
-  // Replace top timer with completion time
   setTimerText(`✅ Completed in: ${taken} (mm:ss)`);
 
-  // Hide quiz UI
   const quizForm = document.getElementById("quizForm");
   if (quizForm) quizForm.style.display = "none";
 
@@ -353,6 +368,7 @@ function showResult(autoSubmitted, reasonText = "") {
       ${reasonText ? `<p><strong>${reasonText}</strong></p>` : ``}
       <p><strong>Team Members:</strong> ${participant}</p>
       <p><strong>Score:</strong> ${score} / ${TOTAL_QUESTIONS}</p>
+      <p><strong>Completed in:</strong> ${taken} (mm:ss)</p>
       <p style="margin-top:12px;color:#6f1414;"><strong>Violations:</strong> ${violations}</p>
     `;
   }
@@ -361,10 +377,8 @@ function showResult(autoSubmitted, reasonText = "") {
   localStorage.setItem("round1Score", String(score));
   localStorage.setItem("round1TimeTaken", taken);
 
-  // Exit fullscreen (optional)
   try {
     if (document.exitFullscreen) document.exitFullscreen();
     else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
   } catch (_) {}
 }
-
