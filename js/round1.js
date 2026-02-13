@@ -47,21 +47,19 @@ function getElapsedSeconds() {
 /* ========================= UI ========================= */
 
 function setTimerText(text) {
-  const t = document.getElementById("timer");
-  if (t) t.textContent = text;
+  document.getElementById("timer").textContent = text;
 }
 
 function showWarning(message) {
   const box = document.getElementById("warningBox");
-  if (!box) return alert(message);
   box.style.display = "block";
   box.textContent = message;
   setTimeout(() => (box.style.display = "none"), 3000);
 }
 
 function hideOverlayAndUnlock() {
-  document.getElementById("startOverlay")?.style.display = "none";
-  document.getElementById("mainContent")?.classList.remove("blurred");
+  document.getElementById("startOverlay").style.display = "none";
+  document.getElementById("mainContent").classList.remove("blurred");
   document.body.classList.remove("lock-scroll");
   document.getElementById("backBtn")?.remove();
 }
@@ -78,9 +76,7 @@ function registerViolation(reason) {
 }
 
 async function requestFullscreenStrictFromClick() {
-  try {
-    await document.documentElement.requestFullscreen();
-  } catch {}
+  try { await document.documentElement.requestFullscreen(); } catch {}
 }
 
 function attachProctoringListeners() {
@@ -158,8 +154,11 @@ async function startQuizFromButton() {
   attachProctoringListeners();
 
   const submitBtn = document.getElementById("submitBtn");
+
   submitBtn.disabled = false;
-  submitBtn.onclick = () => showResult(false);
+
+  // 🚨 ONLY SUBMIT PIPELINE
+  submitBtn.addEventListener("click", attemptSubmit);
 
   startTimer();
 }
@@ -180,7 +179,12 @@ function updateQuizTimerUI() {
   setTimerText(`⏳ Time Left: ${formatMMSS(timeLeft)}`);
 }
 
-/* ========================= Must Answer Check ========================= */
+/* ========================= HARD SUBMIT LOCK ========================= */
+
+function attemptSubmit() {
+  if (!enforceAllAnsweredOrScroll()) return;
+  showResult(false);
+}
 
 function enforceAllAnsweredOrScroll() {
   for (let i = 0; i < TOTAL_QUESTIONS; i++) {
@@ -188,9 +192,9 @@ function enforceAllAnsweredOrScroll() {
     if (!selected) {
       const qEl = document.getElementById(`question-${i}`);
       qEl.scrollIntoView({ behavior: "smooth", block: "center" });
-      qEl.style.outline = "3px solid #9c2c22";
-      setTimeout(() => (qEl.style.outline = ""), 2500);
-      showWarning(`Please answer Q${i + 1}`);
+      qEl.style.outline = "3px solid red";
+      setTimeout(() => (qEl.style.outline = ""), 2000);
+      showWarning(`Answer Question ${i + 1}`);
       return false;
     }
   }
@@ -211,22 +215,18 @@ function calculateScore() {
 function showResult(autoSubmitted, reasonText = "") {
   if (quizEnded) return;
 
-  // 🔒 CRITICAL: manual submit blocked here
-  if (!autoSubmitted) {
-    if (!enforceAllAnsweredOrScroll()) return;
-  }
-
   quizEnded = true;
   clearInterval(timer);
 
   score = calculateScore();
   const taken = formatMMSS(getElapsedSeconds());
 
-  setTimerText(`✅ Completed in: ${taken}`);
+  setTimerText(`Completed in: ${taken}`);
 
   document.getElementById("quizForm").style.display = "none";
 
   const participant = localStorage.getItem("participantName") || "Unknown";
+
   document.getElementById("resultBox").innerHTML = `
     <h2>PRELIMS COMPLETED</h2>
     ${reasonText ? `<p><strong>${reasonText}</strong></p>` : ``}
