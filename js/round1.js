@@ -3,7 +3,7 @@ let score = 0;
 
 const TOTAL_QUESTIONS = 25;
 const TOTAL_TIME = 600;   // 10 minutes quiz time
-const PREP_TIME = 60;     // 1 minute instructions time
+const PREP_TIME = 15;     // 15 secs instructions time
 
 let timer;
 let timeLeft = TOTAL_TIME;
@@ -367,3 +367,4 @@ function showResult(autoSubmitted, reasonText = "") {
     else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
   } catch (_) {}
 }
+
